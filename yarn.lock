@@ -93,6 +93,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@jup-ag/api@^6.0.44":
+  version "6.0.44"
+  resolved "https://registry.yarnpkg.com/@jup-ag/api/-/api-6.0.44.tgz#ee554614f3534461297b85ca78c9440ea130f2be"
+  integrity sha512-C6oYi+wvNi07VlmWhT8+ZDMqTJuF+MiHuNBE65cYuBH6C4l0JfwpXaj6mKazAdVqVFWgngr3s2+0tdF5nDH4tA==
+
 "@jup-ag/referral-sdk@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@jup-ag/referral-sdk/-/referral-sdk-0.2.0.tgz#8fda8869619ac5ea8f4dde302f5f4c0dbaa9999a"

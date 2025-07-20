@@ -37,6 +37,7 @@ const program = new Program<Swapjup>(idl, provider);
 
 let usdcTokenMint: PublicKey;
 usdcTokenMint = new PublicKey("4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU");
+const wsol = new PublicKey("So11111111111111111111111111111111111111112");
 
 const createVault = async () => {
     // Get PDAs
@@ -44,21 +45,38 @@ const createVault = async () => {
             [utils.bytes.utf8.encode("admin"), wallet.publicKey.toBuffer()],
             programId
     );
-    const [vaultPDA, vaultBump] = PublicKey.findProgramAddressSync(
+    const [vaultUsdcPDA, vaultUsdcBump] = PublicKey.findProgramAddressSync(
         [utils.bytes.utf8.encode("vault"), usdcTokenMint.toBuffer()],
         programId
+    );
+    const [vaultWsolPDA, vaultWsolBump] = PublicKey.findProgramAddressSync(
+            [utils.bytes.utf8.encode("vault"), wsol.toBuffer()],
+            programId
     );
 
     // Call instruction
     try {
-        const tx = await program.methods
+        /*const tx = await program.methods
             .initializeVault()
             .accounts({
                 admin: wallet.publicKey,
                 //@ts-ignore
                 adminAccount: adminPDA,
                 vaultToken: usdcTokenMint,
-                vaultAccount: vaultPDA,
+                vaultAccount: vaultUsdcPDA,
+                tokenProgram: TOKEN_PROGRAM_ID
+            })
+            .signers([wallet.payer])
+            .rpc();*/
+
+        const tx = await program.methods
+            .initializeVault()
+            .accounts({
+                admin: wallet.publicKey,
+                //@ts-ignore
+                adminAccount: adminPDA,
+                vaultToken: wsol,
+                vaultAccount: vaultWsolPDA,
                 tokenProgram: TOKEN_PROGRAM_ID
             })
             .signers([wallet.payer])
